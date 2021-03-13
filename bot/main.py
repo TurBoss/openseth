@@ -10,7 +10,7 @@ class OpenSethClient(discord.Client):
         super().__init__(*args, **kwargs)
         
         self.bot_ready = False
-        self.message_id = 819329888695615528
+        self.message_id = 820436177148575744
         
 
     async def on_ready(self):
@@ -43,29 +43,26 @@ class OpenSethClient(discord.Client):
             return
         
         message_id = payload.message_id
-        member = payload.member
-        user_id = payload.user_id
         
         if message_id != self.message_id:
             return
+        
+        member = payload.member
+        user_id = payload.user_id
+        
+        print("Add notification for user_id {}".format(user_id))
         
     async def on_raw_reaction_remove(self, payload):
         if not self.bot_ready:
             return
         
         message_id = payload.message_id
-        member = payload.member
-        user_id = payload.user_id
         
         if message_id != self.message_id:
             return
         
-        s = self.user_table.select().where(
-            and_(
-                text("member_id == :user_id"),
-                text("active == 1")
-            )
-        )
+        member = payload.member
+        user_id = payload.user_id
         
         print("Remove notification for user_id {}".format(user_id))
 
