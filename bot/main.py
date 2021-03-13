@@ -10,7 +10,6 @@ class OpenSethClient(discord.Client):
         super().__init__(*args, **kwargs)
         
         self.bot_ready = False
-        
         self.message_id = 819329888695615528
         
 
@@ -29,7 +28,7 @@ class OpenSethClient(discord.Client):
 
         if message.content.startswith('!notify'):
             await message.reply('Would you like to notify about an event?\nPlease enter event from list:', mention_author=True)
-            
+        
         elif message.content.startswith('!create'):
             data = re.findall('"([^"]*)"', message.content)
             if len(data) == 3:
@@ -82,3 +81,4 @@ token = config["bot"]["token"]
 
 client = OpenSethClient(intents=intents)
 client.run(token)
+

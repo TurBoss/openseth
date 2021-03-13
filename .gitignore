@@ -3,3 +3,6 @@
 /.project
 /.pydevproject
 /venv
+*.pyc
+/openseth/db.sqlite3
+/bot/config.yml
