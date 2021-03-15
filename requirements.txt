@@ -2,3 +2,6 @@ pyyaml
 discord.py
 requests
 Django
+djangorestframework
+markdown
+django-filter
