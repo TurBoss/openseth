@@ -1,5 +1,6 @@
 import re
 import discord
+import requests
 
 from yaml import load
 from yaml import CLoader as Loader, CDumper as Dumper
@@ -9,10 +10,15 @@ class OpenSethClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
+        self.config = kwargs['config']
+        
         self.bot_ready = False
         self.message_id = 820436177148575744
         
+        self.session = requests.Session()
+        print(self.session.get("http://127.0.0.1:8000/events"))
 
+        
     async def on_ready(self):
         self.bot_ready = True
         print('Logged in as {} id {}'.format(self.user.name, self.user.id))
@@ -49,8 +55,9 @@ class OpenSethClient(discord.Client):
         
         member = payload.member
         user_id = payload.user_id
-        
+        data = {'payload': payload}
         print("Add notification for user_id {}".format(user_id))
+        self.session.post("http://127.0.0.1:8000/events/manage", data=data)
         
     async def on_raw_reaction_remove(self, payload):
         if not self.bot_ready:
@@ -76,6 +83,6 @@ with open("config.yml") as f:
 
 token = config["bot"]["token"]
 
-client = OpenSethClient(intents=intents)
+client = OpenSethClient(intents=intents, config=config)
 client.run(token)
 
