@@ -4,7 +4,7 @@ import requests
 
 from yaml import load
 from yaml import CLoader as Loader, CDumper as Dumper
-
+from pprint import pprint
 
 class OpenSethClient(discord.Client):
     def __init__(self, *args, **kwargs):
@@ -12,16 +12,26 @@ class OpenSethClient(discord.Client):
         
         self.config = kwargs['config']
         
+        self.bot_events = None
         self.bot_ready = False
         self.message_id = 820436177148575744
         
         self.session = requests.Session()
-        print(self.session.get("http://127.0.0.1:8000/events"))
-
         
+
     async def on_ready(self):
-        self.bot_ready = True
         print('Logged in as {} id {}'.format(self.user.name, self.user.id))
+        
+        response = self.session.get("http://127.0.0.1:8000/events/")
+        
+        if response.status_code == 200:
+            print(type(response))
+            self.bot_events = response.json()
+        
+            self.bot_ready = True
+        else:
+            print("error")
+            self.bot_ready = False
 
 
     async def on_message(self, message):
@@ -56,8 +66,9 @@ class OpenSethClient(discord.Client):
         member = payload.member
         user_id = payload.user_id
         data = {'payload': payload}
+
         print("Add notification for user_id {}".format(user_id))
-        self.session.post("http://127.0.0.1:8000/events/manage", data=data)
+        self.session.post("http://127.0.0.1:8000/events/", data=data)
         
     async def on_raw_reaction_remove(self, payload):
         if not self.bot_ready:

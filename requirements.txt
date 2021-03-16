@@ -5,3 +5,4 @@ Django
 djangorestframework
 markdown
 django-filter
+djangorestframework-api-key==2.

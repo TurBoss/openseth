@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     'rest_framework',
+    "rest_framework_api_key",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'openseth.wsgi.application'
+
+
+REST_FRAMEWORK = {
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

@@ -7,7 +7,7 @@ from .models import Event, Member, Field, Participation
 
 class FieldInline(admin.StackedInline):
     model = Field
-    extra = 2
+    extra = 3
 
 
 class EventAdmin(admin.ModelAdmin):
