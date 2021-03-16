@@ -1,4 +1,6 @@
+org.eclipse.core.resources.prefs
 /events.db
+/db.sqlite3
 /config.yml
 /.project
 /.pydevproject
@@ -6,3 +8,4 @@
 *.pyc
 /openseth/db.sqlite3
 /bot/config.yml
+/events/migations/
