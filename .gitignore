@@ -1,4 +1,3 @@
-org.eclipse.core.resources.prefs
 /events.db
 /db.sqlite3
 /config.yml
@@ -9,3 +8,4 @@ org.eclipse.core.resources.prefs
 /openseth/db.sqlite3
 /bot/config.yml
 /events/migations/
+/.idea

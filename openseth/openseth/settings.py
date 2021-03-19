@@ -73,7 +73,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'openseth.wsgi.application'
 
 
+# settings.py
 REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework_api_key.permissions.HasAPIKey",
+    ]
 }
 
 # Database

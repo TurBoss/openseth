@@ -6,6 +6,7 @@ from yaml import load
 from yaml import CLoader as Loader, CDumper as Dumper
 from pprint import pprint
 
+
 class OpenSethClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -17,7 +18,6 @@ class OpenSethClient(discord.Client):
         self.message_id = 820436177148575744
         
         self.session = requests.Session()
-        
 
     async def on_ready(self):
         print('Logged in as {} id {}'.format(self.user.name, self.user.id))
@@ -32,7 +32,6 @@ class OpenSethClient(discord.Client):
         else:
             print("error")
             self.bot_ready = False
-
 
     async def on_message(self, message):
         if not self.bot_ready:
@@ -52,7 +51,6 @@ class OpenSethClient(discord.Client):
         
         elif message.content.startswith('!help'):
             await message.reply('Create a new event\nExample: "!create "World Event" "31/03/2021" "18:30"', mention_author=True)
-
 
     async def on_raw_reaction_add(self, payload):
         if not self.bot_ready:
@@ -92,8 +90,8 @@ intents.members = True
 with open("config.yml") as f:
     config = load(f.read(), Loader=Loader)
 
-token = config["bot"]["token"]
+discord_token = config["bot"]["discord_token"]
 
 client = OpenSethClient(intents=intents, config=config)
-client.run(token)
+client.run(discord_token)
 

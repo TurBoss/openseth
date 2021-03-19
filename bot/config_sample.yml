@@ -1,2 +1,3 @@
 bot:
-    token: "your bot key"
+  discord_token: ""
+  api_token: ""
