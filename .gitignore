@@ -10,3 +10,5 @@
 /events/migations/
 /.idea
 /%SystemDrive%/
+/openseth/*/migrations/*.py
+!/openseth/*/migrations/__init__.py
